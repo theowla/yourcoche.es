@@ -5,3 +5,8 @@ p {
     font-family: impact;
     color: red;
 }
+.search_bar{
+    width: 300px;
+    height: auto;
+    align-items: right;
+}
