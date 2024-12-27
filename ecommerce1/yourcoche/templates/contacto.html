@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block content %}
+{% load static %}
+    <link rel="stylesheet" href={% static 'styles.css'%}>
+    <br>
+    <br>
+    <h2> Como Contactarnos <h2>
+    <br>
+
+    <form action="https://formsubmit.co/cocheyour@gmail.com" method="POST" class="border border-dark formEmail">
+        <br>
+        <textarea class="form-control border border-dark w-25" placeholder="Hola!.Le hablo por..." id="exampleFormControlTextarea1" rows="4"></textarea>
+        <div id="passwordHelpBlock" class="fs-4 form-text text-white text">
+            Envianos tus consultas via email
+        </div>
+        <br>
+        <input class="form-label rounded fs-4" type="email" name="email" placeholder="TuEmail@gmail.com" required>
+        <button class="rounded fs-4" type="submit">Send</button>
+        <br>
+        <br>
+   </form>
+{% endblock %}
