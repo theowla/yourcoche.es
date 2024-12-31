@@ -1,1 +1,6 @@
-{% extends layout.html %}
+{% extends "layout.html" %}
+{% block content %}
+{% load static %}
+    <link rel="stylesheet" href={% static 'styles.css'%}>
+    
+{% endblock %}

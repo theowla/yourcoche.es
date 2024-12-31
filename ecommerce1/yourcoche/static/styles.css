@@ -1,11 +1,12 @@
 body {
     background-color: #293e4d;
-    font-family: impact;
-    font-weight: lighter;
+
 }
 h2 {
     color: white;
     text-align: center;
+    font-family: impact;
+    font-weight: lighter;
 }
 .formEmail{
     justify-items: center;
