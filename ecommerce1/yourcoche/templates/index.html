@@ -1,1 +1,29 @@
 {% extends "layout.html" %}
+{% block content %}
+{% load static %}
+{% block css %}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+{% endblock %}
+
+    <h1 style="text-align: center; color: white; padding: 20px; font-family: impact;">Available Cars</h1>
+
+    <div class="car-container">
+        {% for car in cars %}
+        <div class="car">
+            
+            {% if car.pictures %}
+                <img src="{{ car.pictures.url }}" alt="{{ car.make }} {{ car.model }}" style="max-width: 350px; border-radius: 10px;">
+            {% else %}
+                <p>No image available.</p>
+            {% endif %}
+            <h2 style="text-align: center">{{ car.make }} {{ car.model }}</h2>
+            <p><strong>Price:</strong> ${{ car.price }}</p>
+            <p><strong>Description:</strong> {{ car.description }}</p>
+            <p><strong>Status:</strong> {{ car.state }}</p>
+        </div>
+        {% empty %}
+        <p>No cars available.</p>
+        {% endfor %}
+    </div>
+    
+{% endblock %}

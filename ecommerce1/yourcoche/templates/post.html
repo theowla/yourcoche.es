@@ -2,5 +2,35 @@
 {% block content %}
 {% load static %}
     <link rel="stylesheet" href={% static 'styles.css'%}>
-    
+    <div class="container mt-5">
+        <h1>Search Cars</h1>
+        <form method="get" action="{% url 'search' %}">
+            <div class="input-group">
+                <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Search by make or model"
+                    name="query"
+                    value="{{ request.GET.query }}"
+                >
+                <button class="btn btn-primary" type="submit">Search</button>
+            </div>
+        </form>
+
+        <hr>
+
+        {% if cars %}
+            <h3>Search Results:</h3>
+            <ul class="list-group">
+                {% for car in cars %}
+                    <li class="list-group-item">
+                        <strong>{{ car.make }} {{ car.model }}</strong> - ${{ car.price }}
+                        <p>{{ car.description }}</p>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% elif query %}
+            <p>No results found for "{{ query }}".</p>
+        {% endif %}
+    </div>
 {% endblock %}
