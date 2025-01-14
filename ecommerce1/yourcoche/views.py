@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, get_object_or_404
 from .models import Car
 from django.db.models import Q  # Import Q for complex queries
 
@@ -19,5 +19,11 @@ def search_cars(request):
         cars = Car.objects.filter(
             Q(make__icontains=query) | Q(model__icontains=query)
         )
+    car_makes = Car.objects.values('make').distinct()  # Get unique car makes
+    car_models = Car.objects.values('model').distinct()  # Get unique car makes
     
-    return render(request, 'post.html', {'cars': cars, 'query': query})
+    return render(request, 'post.html', {'cars': cars, 'query': query, 'car_makes': car_makes, 'car_models': car_models})
+
+def post(request, id):
+    car = get_object_or_404(Car, id=id)
+    return render(request, "carPost.html", {'car': car})

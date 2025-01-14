@@ -1,17 +1,19 @@
 body {
     background-color: #344C64;
-
+    font-family: "oswald";
 }
 
+/* possibly im going to erase this*/
 .formEmail{
     justify-items: center;
     padding: 5px;
-    background-color: lightslategray;
+    background-color: rgb(63, 72, 106);
 }
-.car {
+.car{
+    color: white;
     box-sizing: border-box;
-    font-family: impact;
-    background-color: #fff; /* White background */
+    font-family: "oswald";
+    background-color: black; /* White background */
     border: 1px solid #ddd; /* Light gray border */
     border-radius: 8px; /* Rounded corners */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
@@ -31,4 +33,30 @@ body {
 .car:hover {
     transform: translateY(-5px); /* Slightly raise the post */
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* Slightly stronger shadow */
+    opacity: 0.75;
 }
+/* Center the search container */
+.container-search {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Dropdown buttons side by side */
+  .container-search .d-flex {
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* Add space between buttons */
+  }
+  
+  /* font from google fonts */
+.oswald-font{
+  font-family: "Oswald", serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
+  
+  
+  

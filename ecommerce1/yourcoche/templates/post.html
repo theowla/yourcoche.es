@@ -1,36 +1,82 @@
 {% extends "layout.html" %}
 {% block content %}
 {% load static %}
-    <link rel="stylesheet" href={% static 'styles.css'%}>
-    <div class="container mt-5">
-        <h1>Search Cars</h1>
-        <form method="get" action="{% url 'search' %}">
-            <div class="input-group">
-                <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Search by make or model"
-                    name="query"
-                    value="{{ request.GET.query }}"
-                >
-                <button class="btn btn-primary" type="submit">Search</button>
+<link rel="stylesheet" href="{% static 'styles.css' %}">
+<!-- search bar for advanced search-->
+<div class="container-search">
+    <h1 class="text-center text-white">Search Cars</h1>
+    <hr>
+    <form method="get" action="{% url 'search' %}">
+        <!-- Dropdowns - Side by side -->
+        <div class="d-flex justify-content-center mb-3">
+            <div class="dropdown me-3">
+                <button class="btn btn-danger dropdown-toggle" type="button" id="makeDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    Select Make
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="makeDropdown">
+                    {% for make in car_makes %}
+                        <option value="{{ make.make }}">{{ make.make }}</option>
+                    {% endfor %}
+                </ul>
             </div>
-        </form>
+            <div class="dropdown">
+                <button class="btn btn-danger dropdown-toggle" type="button" id="modelDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    Select Model
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="modelDropdown">
+                    {% for model in car_models %}
+                        <option value="{{ model.model }}">{{ model.model }}</option>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
 
+        <!-- Search Input (below the dropdowns) -->
+        <div class="input-group w-100 mx-auto">
+            <input
+                type="text"
+                class="form-control"
+                placeholder="Search by make or model"
+                name="query"
+                value="{{ request.GET.query }}"
+            >
+            <button class="btn btn-danger" type="submit">Search</button>
+        </div>
         <hr>
+    </form>
 
-        {% if cars %}
-            <h3>Search Results:</h3>
-            <ul class="list-group">
-                {% for car in cars %}
-                    <li class="list-group-item">
-                        <strong>{{ car.make }} {{ car.model }}</strong> - ${{ car.price }}
-                        <p>{{ car.description }}</p>
-                    </li>
-                {% endfor %}
-            </ul>
-        {% elif query %}
-            <p>No results found for "{{ query }}".</p>
-        {% endif %}
+    <hr>
+    <!-- selected search car posts-->
+    <div class="car-container">
+        {% for car in cars %}
+        <div class="car">
+            <h2 style="text-align: center">{{ car.make }} {{ car.model }}</h2>
+            <hr>
+            <div class="container-search" 
+            style="
+                position: relative; 
+                top: 22%; 
+                left: 50%; 
+                transform: translate(-25%, -75%); 
+                text-align: center; 
+                padding: 20px; 
+                border-radius: 10px;
+            ">  
+                <h2 style="color: red;">{{ car.state }}</h2> 
+            </div>
+                {% if car.pictures %}
+                    <a href="{% url 'post' id=car.id %}">
+                        <img src="{{ car.pictures.url }}" alt="{{ car.make }} {{ car.model }}" style="max-width: 350px; border-radius: 10px; padding: 5px;">
+                    </a>
+                {% else %}
+                    <p>No image available.</p>
+                {% endif %}
+            <p><strong>Price</strong> ${{ car.price }}</p>
+            <hr>
+            <p><strong>Description</strong> {{ car.description }}</p>
+        </div>
+        {% empty %}
+        <p>No cars available.</p>
+        {% endfor %}
     </div>
 {% endblock %}

@@ -4,9 +4,9 @@
     <link rel="stylesheet" href={% static 'styles.css'%}>
     <br>
     <br>
-    <h2> Como Contactarnos <h2>
+    <h2 style="text-align: center; color: white;"> Como Contactarnos <h2>
     <br>
-
+<!-- email API -->
     <form action="https://formsubmit.co/cocheyour@gmail.com" method="POST" class="border border-dark formEmail">
         <br>
         <textarea class="form-control border border-dark w-25" placeholder="Hola!.Le hablo por..." id="exampleFormControlTextarea1" rows="4"></textarea>
@@ -19,10 +19,11 @@
         <br>
         <br>
    </form>
+   <!-- links to social media and phone number -->
    <div style="display: flex; justify-content: center; gap: 10px; margin-top: 10px;">
         <img src="{% static '../static/images_logos/instagram.png'%}" alt="instagram" width="50" height="auto">
-        <h5 style="margin-top: 10px">@yourCocheEs</h5>
+        <a href="https://www.instagram.com/yourcoche.es/?next=%2F&hl=en" style="margin-top: 10px; text-align: center; color: white; font-size: 25px; text-decoration: none;">@yourcoche.es</a>
         <img src="{% static '../static/images_logos/whatssapp-big-logo.png'%}" alt="whatssapp" width="50" height="auto">
-        <h5 style="margin-top: 10px">+34 645 486 396</h5>
+        <h5 style="margin-top: 10px; text-align: center; color: white;">+34 645 486 396</h5>
    </div> 
 {% endblock %}

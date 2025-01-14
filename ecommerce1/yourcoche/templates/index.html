@@ -2,28 +2,78 @@
 {% block content %}
 {% load static %}
 {% block css %}
-        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=1">
 {% endblock %}
+<!--Simple car search bar-->
+<div style="position: relative;">
+    <img src="{% static '../static/images_logos/people-spending-time-nature-long-shot.jpg' %}" 
+         width="100%" 
+         height="auto">
+    <div class="container-search" 
+         style="
+             position: absolute; 
+             top: 50%; 
+             left: 50%; 
+             transform: translate(-50%, -50%); 
+             text-align: center; 
+             background-color: rgba(0, 0, 0, 0.6); 
+             padding: 20px; 
+             border-radius: 10px;
+         ">
+        <h3 class="text-center text-white">Search Cars</h3>
+        <form method="get" action="{% url 'search' %}">        
+            <!-- Search Input -->
+            <div class="input-group w-100 mx-auto">
+                <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Search by make or model"
+                    name="query"
+                    value="{{ request.GET.query }}"
+                >
+                <button class="btn btn-danger" type="submit">Search</button>
+            </div>
+            <hr>
+        </form>
+    </div>
+</div>
+    
+    <hr>
+<!-- Car post structure and style-->
+<h1 style="text-align: center; color: white; padding: 20px;">Available Cars</h1>
 
-    <h1 style="text-align: center; color: white; padding: 20px; font-family: impact;">Available Cars</h1>
-
-    <div class="car-container">
-        {% for car in cars %}
-        <div class="car">
-            
+<div class="car-container">
+    {% for car in cars %}
+    <div class="car">
+        <h2 style="text-align: center">{{ car.make }} {{ car.model }}</h2>
+        <hr>
+        <div class="container-search" 
+        style="
+            position: relative; 
+            top: 22%; 
+            left: 50%; 
+            transform: translate(-25%, -75%); 
+            text-align: center; 
+            padding: 20px; 
+            border-radius: 10px;
+        ">  
+            <h2 style="color: red;">{{ car.state }}</h2> 
+        </div>
             {% if car.pictures %}
-                <img src="{{ car.pictures.url }}" alt="{{ car.make }} {{ car.model }}" style="max-width: 350px; border-radius: 10px;">
+            <!-- Images with url to the post page -->
+                <a href="{% url 'post' id=car.id %}">
+                    <img src="{{ car.pictures.url }}" alt="{{ car.make }} {{ car.model }}" style="max-width: 350px; border-radius: 10px; padding: 5px;">
+                </a>
             {% else %}
                 <p>No image available.</p>
             {% endif %}
-            <h2 style="text-align: center">{{ car.make }} {{ car.model }}</h2>
-            <p><strong>Price:</strong> ${{ car.price }}</p>
-            <p><strong>Description:</strong> {{ car.description }}</p>
-            <p><strong>Status:</strong> {{ car.state }}</p>
-        </div>
-        {% empty %}
-        <p>No cars available.</p>
-        {% endfor %}
+        <p><strong>Price</strong> ${{ car.price }}</p>
+        <hr>
+        <p><strong>Description</strong> {{ car.description }}</p>
     </div>
-    
+    {% empty %}
+    <p>No cars available.</p>
+    {% endfor %}
+</div>
+
 {% endblock %}
