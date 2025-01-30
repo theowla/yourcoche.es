@@ -1,9 +1,10 @@
 {% extends "layout.html" %}
 {% block content %}
 {% load static %}
-<link rel="stylesheet" href="{% static 'styles.css' %}">
+<link rel="stylesheet" href="{% static 'css/styles.css' %}?v=1">
 <!-- search bar for advanced search-->
 <div class="container-search">
+    <br>
     <h1 class="text-center text-white">Search Cars</h1>
     <hr>
     <form method="get" action="{% url 'search' %}">
@@ -15,7 +16,8 @@
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="makeDropdown">
                     {% for make in car_makes %}
-                        <option value="{{ make.make }}">{{ make.make }}</option>
+                        <button value="{{ make.make}}" name="query" type="submit" class="text-dark btn btn-light">{{ make.make }}</button>
+                        <br>
                     {% endfor %}
                 </ul>
             </div>
@@ -24,11 +26,17 @@
                     Select Model
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="modelDropdown">
-                    {% for model in car_models %}
-                        <option value="{{ model.model }}">{{ model.model }}</option>
+                {% if cars != None %}
+                    {% for car in cars %}
+                        <button value="{{ car.model}}" name="query" type="submit" class="text-dark btn btn-light"> {{ car.model }} </button>
                     {% endfor %}
+                {% else %}
+                    <option class="text-dark"> Search a make first</option>
+                {% endif %}
                 </ul>
             </div>
+            <input placeholder="Min Price" type="number" name="priceMin" class="form-control">
+            <input placeholder="Max Price" type"number" name="priceMax" class="form-control">
         </div>
 
         <!-- Search Input (below the dropdowns) -->
@@ -37,32 +45,24 @@
                 type="text"
                 class="form-control"
                 placeholder="Search by make or model"
-                name="query"
-                value="{{ request.GET.query }}"
+                name="queryText"
             >
             <button class="btn btn-danger" type="submit">Search</button>
         </div>
         <hr>
     </form>
-
-    <hr>
     <!-- selected search car posts-->
     <div class="car-container">
         {% for car in cars %}
         <div class="car">
             <h2 style="text-align: center">{{ car.make }} {{ car.model }}</h2>
+            {% if car.state == "Available" %}
+                <h2 style="color: green;">{{ car.state }}</h2>
+            {% else %}
+                <h2 style="color: red;">{{ car.state }}</h2>
+            {% endif %}            
             <hr>
-            <div class="container-search" 
-            style="
-                position: relative; 
-                top: 22%; 
-                left: 50%; 
-                transform: translate(-25%, -75%); 
-                text-align: center; 
-                padding: 20px; 
-                border-radius: 10px;
-            ">  
-                <h2 style="color: red;">{{ car.state }}</h2> 
+            <div class="container-search">  
             </div>
                 {% if car.pictures %}
                     <a href="{% url 'post' id=car.id %}">
@@ -76,7 +76,7 @@
             <p><strong>Description</strong> {{ car.description }}</p>
         </div>
         {% empty %}
-        <p>No cars available.</p>
+        <p>Search for your dream car.</p>
         {% endfor %}
-    </div>
+</div>
 {% endblock %}

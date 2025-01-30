@@ -1,18 +1,19 @@
+*{
+  font-family: "Oswald", serif; /*styles all the fonts in the page*/
+  color: white;
+}
 body {
-    background-color: #344C64;
-    font-family: "oswald";
+    background-color: #243546;
 }
 
-/* possibly im going to erase this*/
+/* possibly im going to change this*/
 .formEmail{
     justify-items: center;
     padding: 5px;
-    background-color: rgb(63, 72, 106);
+    background-color: black;
 }
 .car{
-    color: white;
     box-sizing: border-box;
-    font-family: "oswald";
     background-color: black; /* White background */
     border: 1px solid #ddd; /* Light gray border */
     border-radius: 8px; /* Rounded corners */
@@ -57,6 +58,25 @@ body {
   font-weight: 700;
   font-style: normal;
 }
-  
-  
-  
+hr{
+  color: white; /* makes all the lines white*/
+}
+.aboutUs-intro{
+  text-align: center;
+  background-color: black;
+  padding: 0 10%;  /* Add padding to prevent text from touching the edges */
+}
+.aboutUs-mission {
+  width: 100%;  /* Full width of the parent container */
+  max-width: 100%;  /* Ensure it does not exceed the screen width */
+  text-align: center;  /* Center inline elements like <h3> */
+  margin: 0 auto;  /* Centers the entire div horizontally */
+  background-color: black;
+}
+
+.aboutUs-mission li {
+  text-align: justify;  /* Justify the list items */
+  list-style-position: inside;  /* Keeps bullets aligned properly */
+  margin-bottom: 10px;  /* Adds spacing between list items */
+  padding: 0 10%;  /* Add padding to prevent text from touching the edges */
+}

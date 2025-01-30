@@ -10,9 +10,9 @@ class Car(models.Model):
     pictures = models.ImageField(upload_to='car_pictures/', null=True, blank=True)  # Picture of the car
     description = models.TextField()  # Description of the car
     STATE_CHOICES = [  # Choices for the state of the car
-        ('available', 'Available'),
-        ('sold', 'Sold'),
-        ('reserved', 'Reserved'),
+        ('Available', 'Available'),
+        ('Sold', 'Sold'),
+        ('Reserved', 'Reserved'),
     ]
     state = models.CharField(max_length=10, choices=STATE_CHOICES, default='available')  # State of the car
 

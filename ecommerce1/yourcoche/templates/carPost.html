@@ -2,12 +2,22 @@
 {% block content %}
 {% load static %}
 {% block css %}
-        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}?v=1">
 {% endblock %}
 <!-- Car posts shown in a full page-->
-<h2 class="text-white text-center"> Selected Car </h2>
+ <br>
+<h1 class="text-white text-center"> Selected Car </h1>
+<hr>
+<!-- Creates a post for the car selected -->
+
 <div class="car">
-        <h2 style="text-align: center">{{ car.make }} {{ car.model }}</h2>      
+        <h2 style="text-align: center">{{ car.make }} {{ car.model }}</h2>
+        {% if car.state == "Available" %}
+          <h2 style="color: green;">{{ car.state }}</h2>
+        {% else %}
+          <h2 style="color: red;">{{ car.state }}</h2>
+        {% endif %}        
+      
         {% if car.pictures %}
         <!-- Car pictures shown in slideshow -->
                 <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
@@ -41,7 +51,6 @@
         {% endif %}
         <p><strong>Price:</strong> ${{ car.price }}</p>
         <p><strong>Description:</strong> {{ car.description }}</p>
-        <p><strong>Status:</strong> {{ car.state }}</p>
 </div>
 
 {% endblock %}

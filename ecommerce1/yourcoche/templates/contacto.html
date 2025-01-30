@@ -1,21 +1,21 @@
 {% extends "layout.html" %}
 {% block content %}
 {% load static %}
-    <link rel="stylesheet" href={% static 'styles.css'%}>
+<link rel="stylesheet" href="{% static 'css/styles.css' %}?v=1">
     <br>
     <br>
-    <h2 style="text-align: center; color: white;"> Como Contactarnos <h2>
+    <h2 style="text-align: center; color: white;"> How To Contact Us <h2>
     <br>
 <!-- email API -->
     <form action="https://formsubmit.co/cocheyour@gmail.com" method="POST" class="border border-dark formEmail">
         <br>
-        <textarea class="form-control border border-dark w-25" placeholder="Hola!.Le hablo por..." id="exampleFormControlTextarea1" rows="4"></textarea>
+        <textarea class="form-control border border-dark w-25" placeholder="Hey!. I want to ask about..." id="exampleFormControlTextarea1" rows="4"></textarea>
         <div id="passwordHelpBlock" class="fs-4 form-text text-white text">
-            Envianos tus consultas via email
+            Send us your inquiries via email
         </div>
         <br>
-        <input class="form-label rounded fs-4" type="email" name="email" placeholder="TuEmail@gmail.com" required>
-        <button class="rounded fs-4" type="submit">Send</button>
+        <input class="form-label rounded fs-4" type="email" name="email" placeholder="yourEmail@gmail.com" required>
+        <button class="rounded fs-4 bg-dark" type="submit">Send</button>
         <br>
         <br>
    </form>
@@ -23,6 +23,7 @@
    <div style="display: flex; justify-content: center; gap: 10px; margin-top: 10px;">
         <img src="{% static '../static/images_logos/instagram.png'%}" alt="instagram" width="50" height="auto">
         <a href="https://www.instagram.com/yourcoche.es/?next=%2F&hl=en" style="margin-top: 10px; text-align: center; color: white; font-size: 25px; text-decoration: none;">@yourcoche.es</a>
+        <br>
         <img src="{% static '../static/images_logos/whatssapp-big-logo.png'%}" alt="whatssapp" width="50" height="auto">
         <h5 style="margin-top: 10px; text-align: center; color: white;">+34 645 486 396</h5>
    </div> 

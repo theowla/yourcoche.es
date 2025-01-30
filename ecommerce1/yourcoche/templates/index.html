@@ -2,7 +2,7 @@
 {% block content %}
 {% load static %}
 {% block css %}
-    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=1">
+<link rel="stylesheet" href="{% static 'css/styles.css' %}?v=1">
 {% endblock %}
 <!--Simple car search bar-->
 <div style="position: relative;">
@@ -20,7 +20,8 @@
              padding: 20px; 
              border-radius: 10px;
          ">
-        <h3 class="text-center text-white">Search Cars</h3>
+        <h3 class="text-center text-white mb-4">Search Cars</h3>
+
         <form method="get" action="{% url 'search' %}">        
             <!-- Search Input -->
             <div class="input-group w-100 mx-auto">
@@ -41,23 +42,21 @@
     <hr>
 <!-- Car post structure and style-->
 <h1 style="text-align: center; color: white; padding: 20px;">Available Cars</h1>
-
+<hr style="color: white">
 <div class="car-container">
     {% for car in cars %}
     <div class="car">
         <h2 style="text-align: center">{{ car.make }} {{ car.model }}</h2>
-        <hr>
-        <div class="container-search" 
-        style="
-            position: relative; 
-            top: 22%; 
-            left: 50%; 
-            transform: translate(-25%, -75%); 
-            text-align: center; 
-            padding: 20px; 
-            border-radius: 10px;
-        ">  
-            <h2 style="color: red;">{{ car.state }}</h2> 
+
+        {% if car.state == "Available" %}
+        <h2 style="color: green;">{{ car.state }}</h2>
+    {% else %}
+        <h2 style="color: red;">{{ car.state }}</h2>
+    {% endif %}        
+
+    <hr>
+
+        <div class="container-search">
         </div>
             {% if car.pictures %}
             <!-- Images with url to the post page -->
