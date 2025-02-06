@@ -34,7 +34,7 @@
                 >
                 <button class="btn btn-danger" type="submit">Search</button>
             </div>
-            <hr>
+            <br>
         </form>
     </div>
 </div>
@@ -58,17 +58,37 @@
 
         <div class="container-search">
         </div>
-            {% if car.pictures %}
+            {% if car.images.all %}
             <!-- Images with url to the post page -->
                 <a href="{% url 'post' id=car.id %}">
-                    <img src="{{ car.pictures.url }}" alt="{{ car.make }} {{ car.model }}" style="max-width: 350px; border-radius: 10px; padding: 5px;">
+                    <img src="{{ car.images.first.image.url }}" alt="{{ car.make }} {{ car.model }}" style="max-width: 350px; border-radius: 10px; padding: 5px;">
                 </a>
             {% else %}
-                <p>No image available.</p>
+                <a href="{% url 'post' id=car.id %}">No image available.</a>
             {% endif %}
-        <p><strong>Price</strong> ${{ car.price }}</p>
+        <h3>${{ car.price }}</h3>
         <hr>
-        <p><strong>Description</strong> {{ car.description }}</p>
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col"></th>
+                <th scope="col">Year</th>
+                <th scope="col">Km</th>
+                <th scope="col">Motor</th>
+                <th scope="col">Transmission</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row"></th>
+                <td>{{ car.year }}</td>
+                <td>{{ car.km }}</td>
+                <td>{{ car.motor }}</td>
+                <td>{{ car.transmission }}</td>
+              </tr>        
+            </tbody>
+        </table>
+
     </div>
     {% empty %}
     <p>No cars available.</p>

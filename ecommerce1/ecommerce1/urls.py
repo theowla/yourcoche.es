@@ -24,4 +24,6 @@ from django.conf import settings
 urlpatterns = [
     path("secure-admin/", admin.site.urls),
     path("", include("yourcoche.urls"))
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) #media control
+] 
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
