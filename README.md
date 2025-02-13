@@ -13,6 +13,7 @@ YourCoche.es is designed to streamline the car-buying experience for users, offe
 - **Car Details Page**: Each car has a dedicated page displaying full specifications, images, and contact options.
 - **Contact Page**: Allows potential buyers to get in touch with the dealership for inquiries.
 - **About Us Page**: Provides information about the dealership, its mission, and services.
+- **Secure admin**: If u go to /secure-admin/ you can update the database.
 
 ## Technologies Used
 
