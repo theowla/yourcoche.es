@@ -9,69 +9,71 @@
 <h1 class="text-white text-center"> Selected Car </h1>
 <hr>
 <!-- Creates a post for the car selected -->
-
-<div class="car">
-  <h2 style="text-align: center">{{ car.make }} {{ car.model }}</h2>       
-  <br>
-  {% if car.images.all %}
-    <!-- Car pictures shown in slideshow -->
-  <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
-    <div class="carousel-indicators">
-      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-      {% for image in car.images.all %}
-        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="{{ forloop.counter0 }}" aria-label="Slide {{ forloop.counter0 }}"></button>
-      {% endfor%}
+<div class="car-container">
+  <div class="car">
+    <h2 style="text-align: center">{{ car.make }} {{ car.model }}</h2>       
+    <br>
+    {% if car.images.all %}
+      <!-- Car pictures shown in slideshow -->
+    <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        {% for image in car.images.all %}
+          <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="{{ forloop.counter0 }}" aria-label="Slide {{ forloop.counter0 }}"></button>
+        {% endfor%}
+      </div>
+      <div class="carousel-inner">
+        {% for image in car.images.all %}
+        {% if forloop.counter > 1 %}
+          <div class="carousel-item active" data-bs-interval="8000">
+            <img src="{{ image.image.url }}" class="d-block w-100 rounded" alt="...">
+          </div>
+        {% else %}
+          <div class="carousel-item" data-bs-interval="8000">
+            <img src="{{ image.image.url }}" class="d-block w-100 rounded" alt="...">
+          </div>
+        {% endif %}
+        {% endfor %}
+        <!-- Buttons of the slide-->
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
     </div>
-    <div class="carousel-inner">
-      {% for image in car.images.all %}
-      {% if forloop.counter > 1 %}
-        <div class="carousel-item active" data-bs-interval="8000">
-          <img src="{{ image.image.url }}" class="d-block w-100 rounded" alt="...">
-        </div>
-      {% else %}
-        <div class="carousel-item" data-bs-interval="8000">
-          <img src="{{ image.image.url }}" class="d-block w-100 rounded" alt="...">
-        </div>
-      {% endif %}
-      {% endfor %}
-      
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
+    {% else %}
+        <p>No image available.</p>
+    {% endif %}
+    <hr>
+    <h3>${{ car.price }}</h3>
+    <!-- Data from the car-->
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col"></th>
+          <th scope="col">Year</th>
+          <th scope="col">Km</th>
+          <th scope="col">Motor</th>
+          <th scope="col">Transmission</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row"></th>
+          <td>{{ car.year }}</td>
+          <td>{{ car.km }}</td>
+          <td>{{ car.motor }}</td>
+          <td>{{ car.transmission }}</td>
+        </tr>        
+      </tbody>
+    </table>
+    <hr>
+    <p>{{ car.description }}</p>
   </div>
-  {% else %}
-      <p>No image available.</p>
-  {% endif %}
-  <hr>
-  <h3>${{ car.price }}</h3>
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col"></th>
-        <th scope="col">Year</th>
-        <th scope="col">Km</th>
-        <th scope="col">Motor</th>
-        <th scope="col">Transmission</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th scope="row"></th>
-        <td>{{ car.year }}</td>
-        <td>{{ car.km }}</td>
-        <td>{{ car.motor }}</td>
-        <td>{{ car.transmission }}</td>
-      </tr>        
-    </tbody>
-  </table>
-  <hr>
-  <p>{{ car.description }}</p>
 </div>
 
 {% endblock %}

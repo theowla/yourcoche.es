@@ -1,13 +1,21 @@
 from django.shortcuts import render, HttpResponse, get_object_or_404
-from django.db.models import Max
-from django.db.models import Min
 from .models import Car
 from django.db.models import Q  # Import Q for queries
 
 def home(request):
+    user_agent = request.META.get('HTTP_USER_AGENT', '').lower()
+
+    # Expanded check for more mobile identifiers
+    if any(keyword in user_agent for keyword in ['mobi', 'android', 'iphone', 'ipad', 'windows phone']):
+        is_mobile = True
+    else:
+        is_mobile = False
+        
+    print(is_mobile)
+        
     cars = Car.objects.all()
     # Pass the cars to the template
-    return render(request, 'index.html', {'cars': cars})
+    return render(request, 'index.html', {'is_mobile': is_mobile, 'cars': cars})
 
 def contacto(request):
     return render(request, "contacto.html") #renders the contact page
@@ -28,14 +36,12 @@ def search_cars(request):
         min_price_int = int(min_price)
     else:
         min_price_int = 1  # Default value if min_price is empty
-        print("min_price is empty, defaulting to 1")
 
     # Check if max_price is not empty
     if max_price.strip():  # .strip() removes leading and trailing spaces
         max_price_int = int(max_price)
     else:
         max_price_int = 1000000  # Default value if max_price is empty
-        print("max_price is empty, defaulting to 1.000.000")
 
     print(max_price, min_price)
  

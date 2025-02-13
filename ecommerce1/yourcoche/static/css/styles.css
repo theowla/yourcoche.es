@@ -1,82 +1,112 @@
-*{
-  font-family: "Oswald", serif; /*styles all the fonts in the page*/
+/* Global font and background */
+* {
+  font-family: "Oswald", serif;
   color: white;
 }
+
 body {
-    background-color: #243546;
+  background-color: #141619;
 }
 
-/* possibly im going to change this*/
-.formEmail{
-    justify-items: center;
-    padding: 5px;
-    background-color: black;
+/* Style for email form */
+.formEmail {
+  justify-items: center;
+  padding: 5px;
+  background-color: black;
 }
-.car{
-    box-sizing: border-box;
-    background-color: black; /* White background */
-    border: 1px solid #ddd; /* Light gray border */
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    padding: 20px; /* Inner spacing */
-    margin: 20px auto; /* Centered with spacing */
-    max-width: 500px; /* Limit the width */
-    transition: transform 0.2s, box-shadow 0.2s; /* Hover animation */
-    text-align: center;
-    flex: 1 1 calc(33.33% - 20px); /* 3 items per row, with space for gap */
+
+/* Car post styles */
+.car {
+  box-sizing: border-box;
+  background-color: black;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  margin: 20px auto;
+  max-width: 500px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  text-align: center;
+  flex: 1 1 calc(33.33% - 20px); /* Default 3 items per row */
 }
+
+/* Car container to allow wrapping */
 .car-container {
-    display: flex;
-    flex-wrap: wrap;  /* Allow items to wrap */
-    gap: 20px; /* Space between posts */
-    margin: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin: 20px;
 }
+
+/* Hover effect for car posts */
 .car:hover {
-    transform: translateY(-5px); /* Slightly raise the post */
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* Slightly stronger shadow */
-    opacity: 0.75;
+  transform: translateY(-5px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+  opacity: 0.75;
 }
-/* Center the search container */
+/* Search container style */
 .container-search {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  /* Dropdown buttons side by side */
-  .container-search .d-flex {
-    display: flex;
-    justify-content: center;
-    gap: 10px; /* Add space between buttons */
-  }
-  
-  /* font from google fonts */
-.oswald-font{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+}
+
+.container-search .d-flex {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+.oswald-font {
   font-family: "Oswald", serif;
   font-optical-sizing: auto;
   font-weight: 700;
   font-style: normal;
 }
-hr{
-  color: white; /* makes all the lines white*/
+
+hr {
+  color: white;
 }
-.aboutUs-intro{
+
+/* About Us section styles */
+.aboutUs-intro {
   text-align: center;
-  background-color: black;
-  padding: 0 10%;  /* Add padding to prevent text from touching the edges */
+  background-color: #212529;
+  padding: 0 10%;
 }
+
 .aboutUs-mission {
-  width: 100%;  /* Full width of the parent container */
-  max-width: 100%;  /* Ensure it does not exceed the screen width */
-  text-align: center;  /* Center inline elements like <h3> */
-  margin: 0 auto;  /* Centers the entire div horizontally */
-  background-color: black;
+  width: 100%;
+  max-width: 100%;
+  text-align: center;
+  margin: 0 auto;
+  background-color: #212529;
 }
 
 .aboutUs-mission li {
-  text-align: justify;  /* Justify the list items */
-  list-style-position: inside;  /* Keeps bullets aligned properly */
-  margin-bottom: 10px;  /* Adds spacing between list items */
-  padding: 0 10%;  /* Add padding to prevent text from touching the edges */
+  text-align: justify;
+  list-style-position: inside;
+  margin-bottom: 10px;
+  padding: 0 10%;
+}
+
+/* CSS for Small Screens (below 400px) */
+@media screen and (max-width: 400px) {
+  .car {
+    padding: 10px; /* Adjust padding for smaller screens */
+    max-width: 100%; /* Make the car posts take full width */
+    margin: 10px 0; /* Adjust margin to avoid overflow */
+  }
+
+  .car-container {
+    gap: 10px; /* Reduce gap between car posts */
+    margin: 10px; /* Reduce margin for smaller screens */
+  }
+  .advSearchBar{
+    flex: 1 1 calc(25% - 20px);
+    display: flex;
+    flex-wrap: wrap;
+  }
 }
