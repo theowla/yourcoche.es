@@ -28,6 +28,7 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['13.60.197.1', 'yourcoche.com']
 
+CSRF_TRUSTED_ORIGINS = ['http://13.60.197.1:8000']
 
 # Application definition
 
