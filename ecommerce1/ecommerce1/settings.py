@@ -120,9 +120,8 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # For production
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]  # For development
+STATIC_URL = 'static/'
+
 
 # Media files (optional, if you have user-uploaded images)
 MEDIA_URL = '/media/'
