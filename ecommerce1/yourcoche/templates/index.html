@@ -1,13 +1,11 @@
 {% extends "layout.html" %}
 {% block content %}
 {% load static %}
-{% block css %}
-<link rel="stylesheet" href="{% static 'css/styles.css' %}?v=1">
-{% endblock %}
+
 <!--Simple car search bar for computer use only-->
 {% if not is_mobile %}
     <div style="position: relative;">
-        <img src="{% static '../static/images_logos/people-spending-time-nature-long-shot.jpg' %}" 
+        <img src="../static/images_logos/people-spending-time-nature-long-shot.jpg" 
             width="100%" 
             height="auto">
         <br>

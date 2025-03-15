@@ -13,3 +13,4 @@ class CarAdmin(admin.ModelAdmin):
     ordering = ('-year',)  # Orders cars by the newest first
 
 admin.site.register(Car, CarAdmin)  # Register Car with improved admin settings
+admin.site.register(CarImage)
